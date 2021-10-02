@@ -11,7 +11,7 @@ const MusikPlayer = () => {
         </article>
       </div>
       <div className={styles.musikController}>
-        control
+        <input type="range" />
       </div>
     </section>
   )

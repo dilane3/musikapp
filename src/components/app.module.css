@@ -37,7 +37,7 @@
 /* list of musik */
 
 .aside {
-  width: 300px;
+  width: 200px;
   height: 100%;
   background: #161c21;
   border-left: 1px solid #3d464e;
@@ -66,11 +66,13 @@
 
 .playerSection {
   height: 100%;
-  width: calc(100% - 300px);
+  width: calc(100% - 200px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
+
+/* musik controller */
 
 .musikController {
   height: 60px;
@@ -79,6 +81,39 @@
   flex-direction: row;
   justify-content: center;
 }
+
+.musikController input::-webkit-slider-thumb, /* chrome */
+.musikController input::-ms-thumb {
+  width: 1rem;
+  height: 1rem;
+  border: none;
+  border-radius: 50px;
+  background: currentColor;
+}
+
+.musikController input::-moz-range-thumb {  /* chrome */
+  width: 1rem;
+  height: 1rem;
+  border: none;
+  border-radius: 50px;
+  background: currentColor;
+}
+
+.musikController input {
+  -webkit-appearance: none;
+  padding: 0;
+  font: inherit;
+  height: 5px;
+  outline: none;
+  color: red !important;
+  opacity: .8;
+  background: #CCC;
+  box-sizing: border-box;
+  transition: opacity .2s;
+  cursor: pointer;
+}
+
+/* musik info section  */
 
 .musikInfo {
   width: 100%;
@@ -94,4 +129,51 @@
   height: calc(100% - 40px);
   background: #f4f4f4;
   border-radius: 15px;
+}
+
+@media screen and (max-width: 767px) {
+  .frame {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .playerSection {
+    width: 100%;
+  }
+
+  .aside {
+    display: none;
+    width: 100%;
+  }
+
+  .frame {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translate(0, 0);
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .frame {
+    height: calc(100vh - 80px);
+  }
+}
+
+@media screen and (max-height: 500px) and (max-width: 575px) {
+  .frame {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translate(0, 0);
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+  }
 }
