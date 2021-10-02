@@ -1,0 +1,97 @@
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: calc(100vh - 150px);
+  background: #343434;
+  border-radius: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, .7);
+  overflow: hidden;
+}
+
+.header {
+  height: 50px;
+  width: 100%;
+  background: #161c21;
+  border-bottom: 1px solid #3d464e;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 15px;
+  font-size: 16px;
+  font-family: ubuntu, arial;
+  color: #aab6bd;
+}
+
+.main {
+  width: 100%;
+  height: calc(100% - 50px);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/* list of musik */
+
+.aside {
+  width: 300px;
+  height: 100%;
+  background: #161c21;
+  border-left: 1px solid #3d464e;
+}
+
+.musikHeader {
+  height: 40px;
+  width: 100%;
+  border-bottom: 1px solid #3d464e;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 12px;
+  font-family: ubuntu, arial;
+  color: #aab6bd;
+}
+
+.musikHeader span:first-child {
+  background: #f9253f;
+  font-size: 10px;
+  margin-right: 3px;
+}
+
+/* player musik section */
+
+.playerSection {
+  height: 100%;
+  width: calc(100% - 300px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.musikController {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.musikInfo {
+  width: 100%;
+  height: calc(100% - 60px);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.musik {
+  width: calc(100% - 80px);
+  height: calc(100% - 40px);
+  background: #f4f4f4;
+  border-radius: 15px;
+}
