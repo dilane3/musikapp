@@ -11,7 +11,7 @@ const MusikPlayer = () => {
         </article>
       </div>
       <div className={styles.musikController}>
-        <input type="range" />
+        <progress min={0} max={100} value={60}></progress>
       </div>
     </section>
   )
