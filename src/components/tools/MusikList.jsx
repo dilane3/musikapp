@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from '../app.module.css'
+import Musik from './Musik'
 
 const MusikList = () => {
   return (
@@ -9,7 +10,13 @@ const MusikList = () => {
         <span>Musiques</span>
       </div>
       <div className={styles.musikList}>
-
+        <Musik />
+        <Musik />
+        <Musik />
+        <Musik />
+        <Musik />
+        <Musik />
+        <Musik />
       </div>
     </aside>
   )
