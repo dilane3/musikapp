@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styles from '../app.module.css'
 import Musik from './Musik'
+import MusikContext from '../contexts/musikContext'
 
 const MusikList = () => {
+  const {musiks} = useContext(MusikContext)
+
   return (
     <aside className={styles.aside}>
       <div className={styles.musikHeader}>
@@ -10,13 +13,14 @@ const MusikList = () => {
         <span>Musiques</span>
       </div>
       <div className={styles.musikList}>
-        <Musik />
-        <Musik />
-        <Musik />
-        <Musik />
-        <Musik />
-        <Musik />
-        <Musik />
+        {
+          musiks.map(musik => (
+            <Musik
+              musik={musik}
+            />
+          ))
+        }
+
       </div>
     </aside>
   )

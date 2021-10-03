@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styles from '../app.module.css'
 import {Image} from 'react-image-progressive-loading'
+import MusikContext from '../contexts/musikContext'
 
 const MusikPlayer = () => {
+  const {currentMusik} = useContext(MusikContext)
+
   return (
     <section className={styles.playerSection}>
       <div className={styles.musikInfo}>
@@ -14,14 +17,14 @@ const MusikPlayer = () => {
           />
 
           <div className={styles.musikText}>
-            <span>Trop beau</span>
-            <span>Dilane3</span>
+            <span>{currentMusik.title}</span>
+            <span>{currentMusik.author}</span>
           </div>
         </article>
       </div>
       <div className={styles.musikController}>
         <audio
-          src={require("../../ressources/musics/game-sound-hard.mp3").default}
+          src={currentMusik.src}
           controls
         ></audio>
       </div>

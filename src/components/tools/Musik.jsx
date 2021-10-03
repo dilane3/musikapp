@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../app.module.css'
 import {Image} from 'react-image-progressive-loading'
 
-const Musik = () => {
+const Musik = ({musik}) => {
   return (
     <article className={styles.musikItem}>
       <Image
@@ -13,10 +13,10 @@ const Musik = () => {
 
       <div className={styles.musikItemInfo}>
         <div>
-          <span>Dilane3</span>
-          <span>Trop beau</span>
+          <span>{musik.author}</span>
+          <span>{musik.title}</span>
         </div>
-        <span>3:40</span>
+        <span>{musik.time}</span>
       </div>
 
       <div>

@@ -37,7 +37,7 @@
 /* list of musik */
 
 .aside {
-  width: 200px;
+  width: 250px;
   height: 100%;
   background: #161c21;
   border-left: 1px solid #3d464e;
@@ -107,7 +107,7 @@
 }
 
 .musikItemInfo {
-  width: calc(100% - 70px);
+  width: calc(100% - 100px);
   height: auto;
   font-size: 12px;
   margin-left: 10px;
@@ -148,7 +148,7 @@
 
 .playerSection {
   height: 100%;
-  width: calc(100% - 200px);
+  width: calc(100% - 250px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
