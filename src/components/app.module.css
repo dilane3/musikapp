@@ -37,7 +37,7 @@
 /* list of musik */
 
 .aside {
-  width: 250px;
+  width: 230px;
   height: 100%;
   background: #161c21;
   border-left: 1px solid #3d464e;
@@ -115,24 +115,20 @@
   color: #aab6bd;
 }
 
-.musikItemInfo,
-.musikItemInfo div {
+.musikItemInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-}
-
-.musikItemInfo div {
   line-height: 18px;
 }
 
-.musikItemInfo div span:first-child {
+.musikItemInfo span:first-child {
   font-weight: 600;
   font-size: 14px;
 }
 
-.musikItemInfo div span:last-child {
+.musikItemInfo span:last-child {
   font-weight: 500;
   font-size: 12px;
 }
@@ -148,7 +144,7 @@
 
 .playerSection {
   height: 100%;
-  width: calc(100% - 250px);
+  width: calc(100% - 230px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -234,7 +230,21 @@
 
 @media screen and (max-width: 767px) {
   .frame {
-    width: 80%;
+    width: 90%;
+  }
+
+  .musik {
+    width: calc(100% - 40px) !important;
+    height: calc(100% - 40px);
+  }
+
+  .musikText span:first-child {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .musikText span:last-child {
+    font-size: 20px;
   }
 }
 
@@ -249,12 +259,14 @@
   }
 
   .frame {
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     transform: translate(0, 0);
     height: 100%;
+    width: inherit !important;
     width: 100%;
     border-radius: 0;
   }
@@ -276,5 +288,16 @@
     height: 100%;
     width: 100%;
     border-radius: 0;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .frame {
+    width: 80%;
+  }
+
+  .musik {
+    width: calc(100% - 120px);
+    height: calc(100% - 40px);
   }
 }

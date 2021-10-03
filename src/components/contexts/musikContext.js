@@ -2,7 +2,8 @@ import React from 'react'
 
 const MusikContext = React.createContext({
   musiks: [],
-  currentMusik: {}
+  currentMusik: {},
+  selectMusik: (id) => {}
 })
 
 export default MusikContext

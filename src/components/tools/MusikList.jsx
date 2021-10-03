@@ -15,9 +15,11 @@ const MusikList = () => {
       <div className={styles.musikList}>
         {
           musiks.map(musik => (
-            <Musik
-              musik={musik}
-            />
+            <React.Fragment key={musik.id}>
+              <Musik
+                musik={musik}
+              />
+            </React.Fragment>
           ))
         }
 
