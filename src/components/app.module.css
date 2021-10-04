@@ -19,14 +19,20 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  padding-left: 15px;
+  justify-content: space-between;
+  padding: 0 15px;
   font-size: 16px;
   font-family: ubuntu, arial;
   color: #aab6bd;
 }
 
+.header i {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
 .main {
+  position: relative;
   width: 100%;
   height: calc(100% - 50px);
   display: flex;
@@ -228,6 +234,23 @@
   font-size: 25px;
 }
 
+/* navigation */
+.navigationContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  transition: transform .3s ease-out;
+}
+
+.navigateToList {
+  transform: translateX(-50%);
+}
+
 @media screen and (max-width: 767px) {
   .frame {
     width: 90%;
@@ -254,7 +277,6 @@
   }
 
   .aside {
-    display: none;
     width: 100%;
   }
 

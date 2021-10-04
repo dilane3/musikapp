@@ -4,7 +4,12 @@ import {Image} from 'react-image-progressive-loading'
 import MusikContext from '../contexts/musikContext'
 
 const Musik = ({musik}) => {
-  const {selectMusik} = useContext(MusikContext)
+  const {selectMusik, navigation} = useContext(MusikContext)
+
+  const handleClick = () => {
+    selectMusik(musik.id)
+    navigation("playerSection")
+  }
 
   return (
     <article className={styles.musikItem}>
@@ -19,7 +24,7 @@ const Musik = ({musik}) => {
         <span>{musik.title}</span>
       </div>
 
-      <div onClick={() => selectMusik(musik.id)}>
+      <div onClick={handleClick}>
         <i className="bi bi-play-fill"></i>
       </div>
     </article>

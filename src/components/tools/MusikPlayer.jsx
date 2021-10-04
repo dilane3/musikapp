@@ -1,15 +1,19 @@
-import React, {useContext, useEffect, useRef} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import styles from '../app.module.css'
 import {Image} from 'react-image-progressive-loading'
 import MusikContext from '../contexts/musikContext'
 
 const MusikPlayer = () => {
   const {currentMusik} = useContext(MusikContext)
+  const [load, setLoad] = useState(false)
   const audioRef = useRef()
 
+  useEffect(() => setLoad(true), [])
+
   useEffect(() => {
-    audioRef.current.play()
-  }, [currentMusik])
+    if (load)
+      audioRef.current.play()
+  }, [currentMusik, load])
 
   return (
     <section className={styles.playerSection}>
