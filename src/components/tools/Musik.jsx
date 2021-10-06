@@ -14,7 +14,7 @@ const Musik = ({musik}) => {
   return (
     <article className={styles.musikItem}>
       <Image
-        image={require("../../ressources/images/profil.jpg").default}
+        image={musik.image}
         className={styles.musikItemImage}
         blur={true}
       />

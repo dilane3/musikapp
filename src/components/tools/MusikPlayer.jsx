@@ -20,7 +20,7 @@ const MusikPlayer = () => {
       <div className={styles.musikInfo}>
         <article className={styles.musik}>
           <Image
-            image={require("../../ressources/images/profil.jpg").default}
+            image={currentMusik.image}
             className={styles.musikProfil}
             blur={true}
           />
