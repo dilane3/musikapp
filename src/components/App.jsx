@@ -101,8 +101,6 @@ const App = () => {
   const selectMusik = (id) => {
     const musik = musiks.find(mu => compare.equal(mu.id, id))
 
-    console.log(musik)
-
     if (musik)
       setCurrentMusik(musik)
   }

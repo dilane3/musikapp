@@ -119,9 +119,6 @@
   margin-left: 10px;
   line-height: 20px;
   color: #aab6bd;
-}
-
-.musikItemInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -228,6 +225,7 @@
 .musikText span:first-child {
   font-size: 34px;
   font-weight: bold;
+  text-align: center;
 }
 
 .musikText span:last-child {
