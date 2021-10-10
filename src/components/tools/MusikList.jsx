@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react'
 import styles from '../app.module.css'
+import styles2 from '../upload.module.css'
 import Musik from './Musik'
 import MusikContext from '../contexts/musikContext'
 import Comparator from 'easy-comparator'
@@ -67,7 +68,19 @@ const List = ({musiks}) => {
 const UploadMusik = () => {
   return (
     <section className={styles.uploadMusik}>
-      {"hello"}
+      <span className={styles2.uploadeMusikTitle}>UPLOAD MUSIC</span>
+
+      <div className={styles2.uploadMusikTrigger}>Select a music</div>
+
+      <form className={styles2.uploadMusikForm}>
+        <div className={styles2.uploadMusikFormField}>
+          <input type="text" placeholder="Title" />
+
+          <input type="text" placeholder="Author" />
+        </div>
+
+        <button className={styles2.uploadMusikButton}>Save</button>
+      </form>
     </section>
   )
 }

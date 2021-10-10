@@ -1,0 +1,61 @@
+.uploadeMusikTitle {
+    text-align: center;
+    font-size: 18px;
+    font-family: ubuntu, arial;
+    color: #aab6bd;
+    padding: 10px 0;
+}
+
+.uploadMusikTrigger {
+    width: 100%;
+    height: 100px;
+    padding: 20px 10px;
+    border-radius: 10px;
+    border: 3px dashed #aab6bd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a2aaaf;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.uploadMusikTrigger:hover {
+    cursor: pointer;
+}
+
+/* form */
+.uploadMusikForm {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.uploadMusikFormField {
+    width: 100%;
+    margin: 30px 0 10px 0;
+}
+
+.uploadMusikFormField input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3d464e;
+    padding: 5px 10px;
+}
+
+.uploadMusikFormField input:last-child {
+    margin-top: 15px;
+}
+
+.uploadMusikButton {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    background-color: #f9253f;
+    margin-top: 20px;
+}
