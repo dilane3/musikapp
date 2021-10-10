@@ -17,7 +17,7 @@
     align-items: center;
     color: #a2aaaf;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .uploadMusikTrigger:hover {
@@ -44,6 +44,7 @@
     border: none;
     background-color: #3d464e;
     padding: 5px 10px;
+    color: #aab6bd;
 }
 
 .uploadMusikFormField input:last-child {
@@ -58,4 +59,11 @@
     color: #fff;
     background-color: #f9253f;
     margin-top: 20px;
+}
+
+.indicator {
+    color: #aab6bd;
+    display: flex;
+    align-self: flex-start;
+    font-size: 12px;
 }
