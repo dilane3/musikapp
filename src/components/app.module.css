@@ -43,7 +43,7 @@
 /* list of musik */
 
 .aside {
-  width: 230px;
+  width: 250px;
   height: 100%;
   background: #161c21;
   border-left: 1px solid #3d464e;
@@ -56,16 +56,33 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 10px;
+  justify-content: space-between;
+  padding: 0 10px;
   font-size: 12px;
   font-family: ubuntu, arial;
   color: #aab6bd;
 }
 
-.musikHeader span:first-child {
+.musikHeader div span:first-child {
   background: #f9253f;
   font-size: 10px;
   margin-right: 3px;
+}
+
+.musikHeader div:last-child {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: #f9253f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.musikHeader div:last-child i {
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .musikList {
@@ -143,11 +160,19 @@
   overflow: hidden;
 }
 
+/* upload musik section */
+.uploadMusik {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 /* player musik section */
 
 .playerSection {
   height: 100%;
-  width: calc(100% - 230px);
+  width: calc(100% - 250px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -190,6 +215,10 @@
   background: #f4f4f4;
   border-radius: 15px;
   overflow: hidden;
+}
+
+.musik img {
+  object-fit: cover;
 }
 
 .musikProfil {
@@ -271,6 +300,10 @@
 
 @media screen and (max-width: 575px) {
   .playerSection {
+    width: 100%;
+  }
+
+  .uploadMusik {
     width: 100%;
   }
 
