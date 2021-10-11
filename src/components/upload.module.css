@@ -24,6 +24,10 @@
     cursor: pointer;
 }
 
+.uploadMusikTriggerOk {
+    border-color: rgb(74, 211, 74);
+}
+
 /* form */
 .uploadMusikForm {
     width: 100%;
@@ -62,7 +66,7 @@
 }
 
 .indicator {
-    color: #aab6bd;
+    color: rgb(74, 211, 74);
     display: flex;
     align-self: flex-start;
     font-size: 12px;

@@ -23,7 +23,7 @@ const MusikList = () => {
       <div className={styles.musikHeader}>
         <div>
           <span className="badge badge-success">{musiks.length}</span>
-          <span>Musiques</span>
+          <span>Musics</span>
         </div>
         
         <div>
@@ -48,6 +48,7 @@ const MusikList = () => {
   )
 }
 
+// this component lists all the music
 const List = ({musiks}) => {
   return (
     <>
@@ -72,16 +73,37 @@ const UploadMusik = () => {
 
   const inputFileRef = useRef()
 
-  const handleChangeFile = (value) => {
-    setFile(value)
-    setTitle(value.name.split(".")[0])
+  const handleChangeFile = (file) => {
+    if (file) {
+      setFile(file)
+      setTitle(file.name.split(".")[0])
+    }
+  }
+
+  const handleUploadFile = (event) => {
+    event.preventDefault()
+
+    if (file && compare.greaterThan(title.length, 0) && compare.greaterThan(author.length, 0)) {
+      const payload = {
+        file,
+        title,
+        author
+      }
+
+      console.log(payload)
+    }
   }
 
   return (
     <section className={styles.uploadMusik}>
       <span className={styles2.uploadeMusikTitle}>UPLOAD MUSIC</span>
 
-      <div className={styles2.uploadMusikTrigger} onClick={() => inputFileRef.current.click()}>Select a music</div>
+      <div 
+        className={`${styles2.uploadMusikTrigger} ${!compare.equal(file, null) && styles2.uploadMusikTriggerOk}`} 
+        onClick={() => inputFileRef.current.click()}
+      >
+        Select a music
+      </div>
       <span className={styles2.indicator}>
         {
           !compare.equal(file, null) && "music selected"
@@ -92,6 +114,7 @@ const UploadMusik = () => {
         type="file" 
         className="d-none"
         onChange={(e) => handleChangeFile(e.target.files[0])}
+        accept="audio/*"
       />
 
       <form className={styles2.uploadMusikForm}>
@@ -101,7 +124,7 @@ const UploadMusik = () => {
           <input value={author} type="text" placeholder="Author" onChange={(e) => setAuthor(e.target.value)} />
         </div>
 
-        <button className={styles2.uploadMusikButton}>Save</button>
+        <button className={styles2.uploadMusikButton} onClick={handleUploadFile}>Save</button>
       </form>
     </section>
   )
