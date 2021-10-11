@@ -25,12 +25,11 @@ const MusikList = () => {
           <span className="badge badge-success">{musiks.length}</span>
           <span>Musics</span>
         </div>
-        <a href="../../ressources/musics/fally_ipupa_amore.mp3" download="fally-amore.mp3">Download</a>
         <div>
           <i 
             className={`bi bi-${compare.equal(navigation, "musik-list") ? "upload":"justify"}`}
             onClick={() => navigate()}
-            title="upload section"
+            title={compare.equal(navigation, "musik-list") ? "upload section":"music list"}
           >
           </i>
         </div>

@@ -32,7 +32,7 @@ const MusikPlayer = () => {
 
           <a 
             href={currentMusik.src} 
-            download={currentMusik.downloadName}
+            download={currentMusik.downloadName.toLowerCase()}
             className={`${styles.musikDownloadIcon}`}
           >
             <i className={`bi bi-download`} title="download"></i>

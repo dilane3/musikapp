@@ -5,8 +5,13 @@ import MusikPlayer from './tools/MusikPlayer'
 import MusikList from './tools/MusikList'
 import MusikContext from './contexts/musikContext'
 import Comparator from 'easy-comparator'
+import axios from 'axios'
 
 const compare = new Comparator()
+const instance = axios.create({
+  baseURL: "http://192.168.43.81:5000/api",
+  timeout: 10000
+})
 
 // import musik
 const musik1 = require("../ressources/musics/game-sound-hard.mp3").default
@@ -17,14 +22,14 @@ const musik5 = require("../ressources/musics/fally_ipupa_amore.mp3").default
 const musik6 = require("../ressources/musics/black_m_le_plus_fort_du_monde.mp3").default
 
 // import images
-const image1 = require("../ressources/images/profil.jpg").default
+const image1 = require("../ressources/images/default.png").default
 const image2 = require("../ressources/images/gims.jpg").default
 const image3 = require("../ressources/images/gims.jpg").default
 const image4 = require("../ressources/images/mhd.jpg").default
 const image5 = require("../ressources/images/fally.jpg").default
 const image6 = require("../ressources/images/black-m.jpg").default
 
-const musiks = [
+const MUSIKS = [
     {
       id: 1,
       src: musik1,
@@ -90,9 +95,35 @@ const Navigation = ({active}) => {
 }
 
 const App = () => {
-  const [currentMusik, setCurrentMusik] = useState(musiks[0])
+  const [musiks, setMusiks] = useState(MUSIKS)
+  const [currentMusik, setCurrentMusik] = useState(MUSIKS[0])
   const [sizeWidth, setSizeWidth] = useState(window.innerWidth)
   const [musikNav, setMusikNav] = useState("playerSection")
+
+  useEffect(() => {
+    instance.get("/musik/all")
+    .then(res => {
+      if (res.data) {
+        const musikData = [...musiks]
+  
+        res.data.data.forEach(musik => {
+          musikData.push({
+            id: musik._id,
+            src: musik.filename,
+            title: musik.title,
+            author: musik.author,
+            image: image1,
+            downloadName: musik.downloadName
+          })
+        })
+
+        setMusiks(musikData)
+      }
+    })
+    .catch(err => {
+      console.log(err.response)
+    })
+  }, [])
 
   useEffect(() => {
     const updateLength = (size) => {
