@@ -25,7 +25,7 @@ const Musik = ({musik}) => {
       </div>
 
       <div onClick={handleClick}>
-        <i className="bi bi-play-fill"></i>
+        <i className="bi bi-play-fill" title="play"></i>
       </div>
     </article>
   )

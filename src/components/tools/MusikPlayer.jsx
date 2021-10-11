@@ -29,6 +29,14 @@ const MusikPlayer = () => {
             <span>{currentMusik.title}</span>
             <span>{currentMusik.author}</span>
           </div>
+
+          <a 
+            href={currentMusik.src} 
+            download={currentMusik.downloadName}
+            className={`${styles.musikDownloadIcon}`}
+          >
+            <i className={`bi bi-download`} title="download"></i>
+          </a>
         </article>
       </div>
       <div className={styles.musikController}>

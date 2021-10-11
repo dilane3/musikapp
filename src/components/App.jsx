@@ -30,42 +30,48 @@ const musiks = [
       src: musik1,
       title: "Game sound",
       author: "Dilane3",
-      image: image1
+      image: image1,
+      downloadName: "Dilane3-Game_sound.mp3"
     },
     {
       id: 2,
       src: musik2,
       title: "Brise",
       author: "Maitre Gims",
-      image: image2
+      image: image2,
+      downloadName: "Maitre_Gims-Brise.mp3"
     },
     {
       id: 3,
       src: musik3,
       title: "Est-ce que tu m'aimes",
       author: "Maitre Gims",
-      image: image3
+      image: image3,
+      downloadName: "Maitre_Gims-Est_ce_que_tu_m'aimes.mp3"
     },
     {
       id: 4,
       src: musik4,
       title: "Pololo",
       author: "Mhd feat Tiakola",
-      image: image4
+      image: image4,
+      downloadName: "Mhd_feat_Tiakola-Pololo.mp3"
     },
     {
       id: 5,
       src: musik5,
       title: "amore",
       author: "Fally Ipupa",
-      image: image5
+      image: image5,
+      downloadName: "Fally_Ipupa-Amore.mp3"
     },
     {
       id: 6,
       src: musik6,
       title: "Le plus fort du monde",
       author: "Black M",
-      image: image6
+      image: image6,
+      downloadName: "Black_M-Le_plus_fort_du_monde.mp3"
     }
   ]
 
