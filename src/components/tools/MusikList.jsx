@@ -9,8 +9,8 @@ import {ToastContext} from 'react-simple-toastify'
 
 const compare = new Comparator()
 const instance = axios.create({
-  baseURL: "http://192.168.43.81:5000/api",
-  timeout: 10000
+  baseURL: "https://musikapp-server.herokuapp.com/api",
+  timeout: 25000
 })
 
 const MusikList = () => {
@@ -116,6 +116,11 @@ const UploadMusik = () => {
         if (res.data)
           addMusik(res.data.data)
 
+        setTitle("")
+        setAuthor("")
+        setCategory("urban")
+        setFile(null)
+
         displayToast("Music uploaded successfully")
       })
       .catch(err => {
@@ -126,11 +131,6 @@ const UploadMusik = () => {
       .then(() => {
         // mask the loader
         setLoading(false)
-
-        setTitle("")
-        setAuthor("")
-        setCategory("urban")
-        setFile(null)
       })
     }
   }

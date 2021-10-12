@@ -10,7 +10,7 @@ import {ToastContext, useToastState, ToastContainer} from 'react-simple-toastify
 
 const compare = new Comparator()
 const instance = axios.create({
-  baseURL: "http://192.168.43.81:5000/api",
+  baseURL: "https://musikapp-server.herokuapp.com/api",
   timeout: 10000
 })
 
