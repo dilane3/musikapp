@@ -4,8 +4,14 @@ import styles2 from '../upload.module.css'
 import Musik from './Musik'
 import MusikContext from '../contexts/musikContext'
 import Comparator from 'easy-comparator'
+import axios from 'axios'
+import {ToastContext} from 'react-simple-toastify'
 
 const compare = new Comparator()
+const instance = axios.create({
+  baseURL: "http://192.168.43.81:5000/api",
+  timeout: 10000
+})
 
 const MusikList = () => {
   const {musiks} = useContext(MusikContext)
@@ -70,6 +76,11 @@ const UploadMusik = () => {
   const [file, setFile] = useState(null)
   const [title, setTitle] = useState("")
   const [author, setAuthor] = useState("")
+  const [category, setCategory] = useState("urban")
+  const [loading, setLoading] = useState(false)
+
+  const {addMusik} = useContext(MusikContext)
+  const {displayToast} = useContext(ToastContext)
 
   const inputFileRef = useRef()
 
@@ -83,14 +94,44 @@ const UploadMusik = () => {
   const handleUploadFile = (event) => {
     event.preventDefault()
 
-    if (file && compare.greaterThan(title.length, 0) && compare.greaterThan(author.length, 0)) {
-      const payload = {
-        file,
-        title,
-        author
-      }
+    if (
+      file && 
+      compare.greaterThan(title.length, 0) && 
+      compare.greaterThan(author.length, 0) &&
+      category
+    ) {
+      // display the loader
+      setLoading(true)
 
-      console.log(payload)
+      // construction of the form data
+      const dataform = new FormData()
+
+      dataform.append("audio", file)
+      dataform.append("title", title)
+      dataform.append("author", author)
+      dataform.append("category", category)
+
+      instance.post("/musik/upload", dataform)
+      .then(res => {
+        if (res.data)
+          addMusik(res.data.data)
+
+        displayToast("Music uploaded successfully")
+      })
+      .catch(err => {
+        console.log(err)
+
+        displayToast("Something went wrong")
+      })
+      .then(() => {
+        // mask the loader
+        setLoading(false)
+
+        setTitle("")
+        setAuthor("")
+        setCategory("urban")
+        setFile(null)
+      })
     }
   }
 
@@ -122,10 +163,22 @@ const UploadMusik = () => {
           <input value={title} type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
 
           <input value={author} type="text" placeholder="Author" onChange={(e) => setAuthor(e.target.value)} />
+
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="urbain">Urban</option>
+            <option value="rap">Rap</option>
+            <option value="religious">Religious</option>
+            <option value="traditionnelle">Tradition</option>
+            <option value="other">Other</option>
+          </select>
         </div>
 
         <button className={styles2.uploadMusikButton} onClick={handleUploadFile}>Save</button>
       </form>
+
+      {
+        loading && <div className={styles2.uploadMusikLoader}></div>
+      }
     </section>
   )
 }

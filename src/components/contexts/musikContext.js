@@ -4,7 +4,8 @@ const MusikContext = React.createContext({
   musiks: [],
   currentMusik: {},
   selectMusik: (id) => {},
-  navigation: (target) => {}
+  navigation: (target) => {},
+  addMusik: (musik) => {}
 })
 
 export default MusikContext

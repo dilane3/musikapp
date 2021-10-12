@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useMemo, useRef} from 'react'
 import "./index.css"
 import styles from './app.module.css'
 import MusikPlayer from './tools/MusikPlayer'
@@ -6,6 +6,7 @@ import MusikList from './tools/MusikList'
 import MusikContext from './contexts/musikContext'
 import Comparator from 'easy-comparator'
 import axios from 'axios'
+import {ToastContext, useToastState, ToastContainer} from 'react-simple-toastify'
 
 const compare = new Comparator()
 const instance = axios.create({
@@ -36,7 +37,8 @@ const MUSIKS = [
       title: "Game sound",
       author: "Dilane3",
       image: image1,
-      downloadName: "Dilane3-Game_sound.mp3"
+      downloadName: "Dilane3-Game_sound.mp3",
+      category: "urbain"
     },
     {
       id: 2,
@@ -44,7 +46,8 @@ const MUSIKS = [
       title: "Brise",
       author: "Maitre Gims",
       image: image2,
-      downloadName: "Maitre_Gims-Brise.mp3"
+      downloadName: "Maitre_Gims-Brise.mp3",
+      category: "urbain"
     },
     {
       id: 3,
@@ -52,7 +55,8 @@ const MUSIKS = [
       title: "Est-ce que tu m'aimes",
       author: "Maitre Gims",
       image: image3,
-      downloadName: "Maitre_Gims-Est_ce_que_tu_m'aimes.mp3"
+      downloadName: "Maitre_Gims-Est_ce_que_tu_m'aimes.mp3",
+      category: "urbain"
     },
     {
       id: 4,
@@ -60,7 +64,8 @@ const MUSIKS = [
       title: "Pololo",
       author: "Mhd feat Tiakola",
       image: image4,
-      downloadName: "Mhd_feat_Tiakola-Pololo.mp3"
+      downloadName: "Mhd_feat_Tiakola-Pololo.mp3",
+      category: "urbain"
     },
     {
       id: 5,
@@ -68,7 +73,8 @@ const MUSIKS = [
       title: "amore",
       author: "Fally Ipupa",
       image: image5,
-      downloadName: "Fally_Ipupa-Amore.mp3"
+      downloadName: "Fally_Ipupa-Amore.mp3",
+      category: "urbain"
     },
     {
       id: 6,
@@ -76,7 +82,8 @@ const MUSIKS = [
       title: "Le plus fort du monde",
       author: "Black M",
       image: image6,
-      downloadName: "Black_M-Le_plus_fort_du_monde.mp3"
+      downloadName: "Black_M-Le_plus_fort_du_monde.mp3",
+      category: "urbain"
     }
   ]
 
@@ -100,7 +107,25 @@ const App = () => {
   const [sizeWidth, setSizeWidth] = useState(window.innerWidth)
   const [musikNav, setMusikNav] = useState("playerSection")
 
+  const [
+    toastState, // this contain data of current toast
+    displayToast, // this function allow you to display toast
+    maskToast // this function is use to mask toast
+  ] = useToastState()
+
+  const musicsMemo = useMemo(() => ({musiks, displayToast}), [musiks, displayToast])
+  let musicsRef = useRef(musicsMemo)
+
   useEffect(() => {
+    musicsRef.current = musicsMemo
+  }, [musicsMemo])
+
+  useEffect(() => {
+    const {
+      musiks,
+      displayToast
+    } = musicsRef.current
+
     instance.get("/musik/all")
     .then(res => {
       if (res.data) {
@@ -113,15 +138,19 @@ const App = () => {
             title: musik.title,
             author: musik.author,
             image: image1,
-            downloadName: musik.downloadName
+            downloadName: musik.downloadName,
+            category: musik.category
           })
         })
 
         setMusiks(musikData)
+        displayToast("Musics sucessful loaded")
       }
     })
     .catch(err => {
       console.log(err.response)
+
+      displayToast("Something went wrong while loading musics")
     })
   }, [])
 
@@ -156,34 +185,61 @@ const App = () => {
       setMusikNav("playerSection")
   }
 
-  const contextValue = {musiks, currentMusik, selectMusik, navigation: handleNavigate}
+  const addMusik = (musik) => {
+    const newMusiks = [...musiks]
+
+    const newMusik = {
+      id: musik._id,
+      src: musik.filename,
+      title: musik.title,
+      author: musik.author,
+      image: image1,
+      downloadName: musik.downloadName,
+      category: musik.category
+    }
+
+    newMusiks.push(newMusik)
+    setMusiks(newMusiks)
+  }
+
+  const contextValue = {musiks, currentMusik, selectMusik, navigation: handleNavigate, addMusik}
+  const contextValueToast = {...toastState, displayToast, maskToast}
+
+  const toastOptions = {
+    position: "bottom",
+    timeout: 1000
+  }
 
   return (
-    <MusikContext.Provider value={contextValue}>
-      <main className={styles.frame}>
-        <header className={styles.header}>
-          <span>MusikApp</span>
-          {
-            compare.lessThanOrEqual(sizeWidth, 575) && (
-              <i className="bi bi-justify" onClick={() => handleNavigate()}></i>
-            )
-          }
-        </header>
+    <ToastContext.Provider value={contextValueToast}>
+      <MusikContext.Provider value={contextValue}>
+        <main className={styles.frame}>
+          <header className={styles.header}>
+            <span>MusikApp</span>
+            {
+              compare.lessThanOrEqual(sizeWidth, 575) && (
+                <i className="bi bi-justify" onClick={() => handleNavigate()}></i>
+              )
+            }
+          </header>
 
-        <section className={styles.main}>
-          {
-            compare.lessThanOrEqual(sizeWidth, 575) ? (
-              <Navigation active={musikNav} />
-            ):(
-              <>
-                <MusikPlayer />
-                <MusikList />
-              </>
-            )
-          }
-        </section>
-      </main>
-    </MusikContext.Provider>
+          <section className={styles.main}>
+            {
+              compare.lessThanOrEqual(sizeWidth, 575) ? (
+                <Navigation active={musikNav} />
+              ):(
+                <>
+                  <MusikPlayer />
+                  <MusikList />
+                </>
+              )
+            }
+          </section>
+        </main>
+
+        <ToastContainer options={toastOptions} />
+      </MusikContext.Provider>
+    </ToastContext.Provider>
   )
 }
 

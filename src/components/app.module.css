@@ -43,6 +43,7 @@
 /* list of musik */
 
 .aside {
+  position: relative;
   width: 250px;
   height: 100%;
   background: #161c21;
@@ -193,7 +194,6 @@
   width: 100%;
   height: auto;
   overflow: hidden;
-  /* overflow-y: scroll; */
   display: flex;
   flex-direction: column;
   align-items: center;

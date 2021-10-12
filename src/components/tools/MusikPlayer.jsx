@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useRef, useState} from 'react'
 import styles from '../app.module.css'
 import {Image} from 'react-image-progressive-loading'
 import MusikContext from '../contexts/musikContext'
+import axios from 'axios'
 
 const MusikPlayer = () => {
   const {currentMusik} = useContext(MusikContext)
@@ -15,6 +16,31 @@ const MusikPlayer = () => {
       audioRef.current.play()
   }, [currentMusik, load])
 
+  function download(e, musik) {
+    e.preventDefault()
+
+    axios({
+      url: musik.src,
+      method: 'GET',
+      responseType: 'blob'
+    })
+    .then((response) => {
+      const url = window.URL
+        .createObjectURL(new Blob([response.data]));
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', musik.downloadName.toLowerCase());
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      console.log(response.data)
+      console.log(url)
+    })
+  }
+
+
   return (
     <section className={styles.playerSection}>
       <div className={styles.musikInfo}>
@@ -26,17 +52,16 @@ const MusikPlayer = () => {
           />
 
           <div className={styles.musikText}>
-            <span>{currentMusik.title}</span>
+            <span>{currentMusik.title.replaceAll('_', " ")}</span>
             <span>{currentMusik.author}</span>
           </div>
 
-          <a 
-            href={currentMusik.src} 
-            download={currentMusik.downloadName.toLowerCase()}
+          <span
             className={`${styles.musikDownloadIcon}`}
+            onClick={(e) => download(e, currentMusik)}
           >
             <i className={`bi bi-download`} title="download"></i>
-          </a>
+          </span>
         </article>
       </div>
       <div className={styles.musikController}>

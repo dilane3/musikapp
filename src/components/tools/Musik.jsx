@@ -21,7 +21,7 @@ const Musik = ({musik}) => {
 
       <div className={styles.musikItemInfo}>
         <span>{musik.author}</span>
-        <span>{musik.title}</span>
+        <span>{musik.title.replaceAll('_', " ")}</span>
       </div>
 
       <div onClick={handleClick}>
