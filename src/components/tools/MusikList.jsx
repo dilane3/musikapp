@@ -13,6 +13,11 @@ const instance = axios.create({
   timeout: 25000
 })
 
+// const instance = axios.create({
+//   baseURL: "http://192.168.42.195:5000/api",
+//   timeout: 25000
+// })
+
 const MusikList = () => {
   const {musiks} = useContext(MusikContext)
   const [navigation, setNavigation] = useState("musik-list")

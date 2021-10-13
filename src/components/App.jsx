@@ -14,6 +14,11 @@ const instance = axios.create({
   timeout: 10000
 })
 
+// const instance = axios.create({
+//   baseURL: "http://192.168.42.195:5000/api",
+//   timeout: 10000
+// })
+
 // import musik
 const musik1 = require("../ressources/musics/game-sound-hard.mp3").default
 const musik2 = require("../ressources/musics/maitre_gims_brise.mp3").default
@@ -148,7 +153,7 @@ const App = () => {
       }
     })
     .catch(err => {
-      console.log(err.response)
+      console.log(err)
 
       displayToast("Something went wrong while loading musics")
     })
