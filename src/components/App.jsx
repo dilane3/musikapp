@@ -10,9 +10,19 @@ import {ToastContext, useToastState, ToastContainer} from 'react-simple-toastify
 
 const compare = new Comparator()
 const instance = axios.create({
-  baseURL: "http://192.168.43.81:5000/api",
+  baseURL: "https://musikapp-server.osc-fr1.scalingo.io/api",
   timeout: 10000
 })
+
+// const instance = axios.create({
+//   baseURL: "https://musikapp-server.herokuapp.com/api",
+//   timeout: 10000
+// })
+
+// const instance = axios.create({
+//   baseURL: "http://192.168.42.195:5000/api",
+//   timeout: 10000
+// })
 
 // import musik
 const musik1 = require("../ressources/musics/game-sound-hard.mp3").default
@@ -148,7 +158,7 @@ const App = () => {
       }
     })
     .catch(err => {
-      console.log(err.response)
+      console.log(err)
 
       displayToast("Something went wrong while loading musics")
     })
