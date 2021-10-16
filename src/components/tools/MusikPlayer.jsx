@@ -20,7 +20,7 @@ const MusikPlayer = () => {
     e.preventDefault()
 
     axios({
-      url: musik.src,
+      url: musik.src.replace("http", "https"),
       method: 'GET',
       responseType: 'blob'
     })
