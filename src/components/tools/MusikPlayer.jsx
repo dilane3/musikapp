@@ -40,6 +40,10 @@ const MusikPlayer = () => {
     })
   }
 
+  const subTitle = (title) => {
+    return title.length > 30 ? title.substr(0, 30) + "..." : title
+  }
+
 
   return (
     <section className={styles.playerSection}>
@@ -52,7 +56,7 @@ const MusikPlayer = () => {
           />
 
           <div className={styles.musikText}>
-            <span>{currentMusik.title.replaceAll('_', " ")}</span>
+            <span>{subTitle(currentMusik.title.replaceAll('_', " "))}</span>
             <span>{currentMusik.author}</span>
           </div>
 

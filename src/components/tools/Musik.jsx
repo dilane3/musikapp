@@ -11,6 +11,10 @@ const Musik = ({musik}) => {
     navigation("playerSection")
   }
 
+  const subTitle = (title) => {
+    return title.length > 20 ? title.substr(0, 20) + "..." : title
+  }
+
   return (
     <article className={styles.musikItem}>
       <Image
@@ -21,7 +25,7 @@ const Musik = ({musik}) => {
 
       <div className={styles.musikItemInfo}>
         <span>{musik.author}</span>
-        <span>{musik.title.replaceAll('_', " ")}</span>
+        <span>{subTitle(musik.title.replaceAll('_', " "))}</span>
       </div>
 
       <div onClick={handleClick}>
